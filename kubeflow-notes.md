@@ -13,11 +13,13 @@ export DEBIAN_FRONTEND=noninteractive
 ```
 
 - bootstrap cluster with external access
+
 ```bash
 juju bootstrap myk8s --debug --config controller-service-type=loadbalancer
 ```
 
 - patch `ingressgateway-operator` to have permission to access resources
+
 ```bash
 kubectl patch role -n kubeflow istio-ingressgateway-operator -p '{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"istio-ingressgateway-operator"},"rules":[{"apiGroups":["*"],"resources":["*"],"verbs":["*"]}]}'
 ```
@@ -28,7 +30,7 @@ kubectl patch role -n kubeflow istio-ingressgateway-operator -p '{"apiVersion":"
 juju destroy-model kubeflow --destroy-storage
 ```
 
-or 
+or
 
 ```bash
 juju destroy-model kubeflow --yes --destroy-storage --force
@@ -36,7 +38,7 @@ juju destroy-model kubeflow --yes --destroy-storage --force
 
 ### install by kubeflow manifest
 
-> Follow https://github.com/kubeflow/manifests/blob/master/README.md for latest instruction
+> Follow <https://github.com/kubeflow/manifests/blob/master/README.md> for latest instruction
 
 - [install cert manager](https://github.com/kubeflow/manifests/blob/master/README.md#cert-manager)
   - need to config quay image registry
@@ -57,9 +59,11 @@ juju destroy-model kubeflow --yes --destroy-storage --force
 - [kubeflow istio resources](https://github.com/kubeflow/manifests/blob/master/README.md#kubeflow-istio-resources)
 - [kubeflow pipelines](https://github.com/kubeflow/manifests/blob/master/README.md#kubeflow-istio-resources)
   - we are running under containrd instead of docker, thus run
+
   ```bash
   kustomize build apps/pipeline/upstream/env/platform-agnostic-multi-user-pns | kubectl apply -f -
   ```
+
   - need to config gcr image registry
   - currently deleted due to limited resource
 - [kfserving](https://github.com/kubeflow/manifests/blob/master/README.md#kfserving)
