@@ -69,4 +69,5 @@ juju destroy-model kubeflow --yes --destroy-storage --force
 - [central dashboard](https://github.com/kubeflow/manifests/blob/master/README.md#central-dashboard)
   - currently deleted due to limited resource
 - [admission webhook](https://github.com/kubeflow/manifests/blob/master/README.md#admission-webhook)
-  - currently deleted due to limited resource
+  
+- currently deleted due to limited resource
