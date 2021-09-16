@@ -4,7 +4,7 @@
 
 ### install by juju
 
-> Follow https://www.kubeflow.org/docs/distributions/charmed/install-kubeflow/ for latest instruction
+> Follow <https://www.kubeflow.org/docs/distributions/charmed/install-kubeflow> for latest instruction
 
 ```bash
 sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
@@ -51,6 +51,37 @@ juju destroy-model kubeflow --yes --destroy-storage --force
 - [install oidc-authserver](https://github.com/kubeflow/manifests/blob/master/README.md#oidc-authservice)
   > this component cause all services on k8s to require authentication from dex, need to figure out how to config this
   - need to config gcr image registry (did it in kustomization.yaml)
+  - `common/oidc-authservice/base/envoy-filter.yaml` will secure all requests into the k8s cluster, need to exclude some for our own services.
+    - use `ExtAuthzPerRoute` to disable ext_authz:
+
+    ```yaml
+      apiVersion: networking.istio.io/v1alpha3
+      kind: EnvoyFilter
+      metadata:
+        name: bypass-authserver-filter # a distinct name for each bypass filter
+        namespace: istio-system
+      spec:
+        workloadSelector:
+          labels:
+            istio: ingressgateway
+        configPatches:
+          - applyTo: HTTP_ROUTE
+            match:
+              context: GATEWAY
+              routeConfiguration:
+                vhost:
+                  route:
+                    name: authserver-route # matches VirtualService.spec.http.name which we need to exclude for auth
+            patch:
+              operation: MERGE
+              value:
+                name: envoy.ext_authz_disabled
+                typed_per_filter_config:
+                  envoy.ext_authz:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+                    disabled: true
+    ```
+
   - istio-system.authservice still 0/1, seems dex service is not up yet
 - [install knative](https://github.com/kubeflow/manifests/blob/master/README.md#knative)
   - need to config gcr image registry
