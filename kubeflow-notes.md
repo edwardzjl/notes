@@ -96,13 +96,22 @@ juju destroy-model kubeflow --yes --destroy-storage --force
   ```
 
   - need to config gcr image registry
-  - currently deleted due to limited resource
 - [kfserving](https://github.com/kubeflow/manifests/blob/master/README.md#kfserving)
-  - currently deleted due to limited resource
 - [katib](https://github.com/kubeflow/manifests/blob/master/README.md#kfserving)
-  - currently deleted due to limited resource
 - [central dashboard](https://github.com/kubeflow/manifests/blob/master/README.md#central-dashboard)
-  - currently deleted due to limited resource
 - [admission webhook](https://github.com/kubeflow/manifests/blob/master/README.md#admission-webhook)
-  
-- currently deleted due to limited resource
+- [notebooks](https://github.com/kubeflow/manifests/blob/master/README.md#notebooks)
+  - notebook controller
+  - jupyter web app
+- [profiles + KFAM](https://github.com/kubeflow/manifests/blob/master/README.md#profiles--kfam)
+- [volumes web app](https://github.com/kubeflow/manifests/blob/master/README.md#volumes-web-app)
+- [tensorboard](https://github.com/kubeflow/manifests/blob/master/README.md#tensorboard)
+  - tensorboard web app
+  - tensorboard controller
+- [tfjob operator](https://github.com/kubeflow/manifests/blob/v1.3-branch/README.md#tfjob-operator)
+- [pytorch operator](https://github.com/kubeflow/manifests/blob/v1.3-branch/README.md#pytorch-operator)
+- [mpi operator](https://github.com/kubeflow/manifests/blob/v1.3-branch/README.md#mpi-operator)
+  - stuck here: `flag provided but not defined: -kubectl-delivery-image`
+- [mxnet operator](https://github.com/kubeflow/manifests/blob/v1.3-branch/README.md#mxnet-operator)
+- [xgboost operator](https://github.com/kubeflow/manifests/blob/v1.3-branch/README.md#xgboost-operator)
+- [user namespace](https://github.com/kubeflow/manifests/blob/v1.3-branch/README.md#user-namespace)
