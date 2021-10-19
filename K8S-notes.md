@@ -195,6 +195,8 @@ sudo systemctl start containerd
 kubectl rollout restart deployment/demo
 ```
 
+### Network
+
 - get services ip range
 
 ```bash
@@ -205,6 +207,26 @@ kubectl cluster-info dump | grep -m 1 service-cluster-ip-range
 
 ```bash
 kubectl cluster-info dump | grep -m 1 cluster-cidr
+```
+
+### Nodes
+
+- get node labels
+
+```bash
+kubectl get nodes --show-labels
+```
+
+- add label to node
+
+```bash
+kubectl label nodes <node-name> <label-key>=<label-value>
+```
+
+- remove label from node
+
+```bash
+kubectl label nodes <node-name> <label-key>-
 ```
 
 ### Manage storage
