@@ -7,7 +7,7 @@ According to [this comment](https://github.com/kserve/kserve/issues/1359#issueco
 
 I don't know whether it's a bug or it's due to my re-deployment of `knative-serving` and `kfserving`.
 
-Following that commit, I copy-paste the caBundle value and fill it in `mutatingwebhookconfiguration` and `validatingwebhookconfiguration`, then the error message disappeared.
+Following that commit, I copied the caBundle value and fill it in `mutatingwebhookconfiguration` and `validatingwebhookconfiguration`, then the error message disappeared.
 
 *!! IMPORTANT !!*
 
